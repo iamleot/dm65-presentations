@@ -1,0 +1,22 @@
+name: Check GitHub Actions workflows
+
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '12 3 * * 4'
+
+jobs:
+  actionlint:
+    name: Check GitHub Actions workflows
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Check GitHub Actions workflows
+        uses: docker://rhysd/actionlint:latest
+        with:
+          args: -color
