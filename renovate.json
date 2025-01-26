@@ -2,5 +2,24 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "\\.github/workflows/.*\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "TASK_VERSION:\\s+\"(?<currentValue>.*)\""
+      ],
+      "depNameTemplate": "go-task/task",
+      "datasourceTemplate": "github-releases"
+    }
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "schedule": [
+    "* 4 * * 3"
   ]
 }
