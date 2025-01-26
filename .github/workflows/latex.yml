@@ -5,6 +5,8 @@ name: Regenerate PDF files
     branches:
       - main
   pull_request:
+  schedule:
+    - cron: '12 3 * * 4'
 
 env:
   TASK_VERSION: "3.41.0"
