@@ -1,0 +1,70 @@
+\documentclass{beamer}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Personal commands
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\newcommand{\command}[1]{\mbox{\texttt{#1}}}
+\newcommand{\file}[1]{\mbox{\texttt{#1}}}
+
+% Beamer options
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{bibliography item}{}
+\setbeamertemplate{caption}{\insertcaption}
+\setbeamertemplate{footline}[frame number]
+
+\title{TODO: questo è il titolo}
+\author[leot]{Leonardo Taccari \\ {\footnotesize \texttt{<s1069964@studenti.univpm.it>}}}
+\date{}
+
+\begin{document}
+
+% Title of the presentation
+\begin{frame}
+\maketitle
+\end{frame}
+
+% Outline
+\begin{frame}{Sommario}
+\tableofcontents
+\end{frame}
+
+\section{TODO: una sezione}
+\begin{frame}{\insertsection}
+\end{frame}
+
+\subsection{TODO: una sotto-sezione}
+\begin{frame}{\insertsubsection}
+\begin{itemize}
+\item foo
+\item bar
+\item baz
+\end{itemize}
+\end{frame}
+
+\section{TODO: un'altra sezione}
+\begin{frame}{\insertsection}
+\end{frame}
+
+\subsection{TODO: un'altra sotto-sezione}
+\begin{frame}{\insertsubsection}
+\begin{description}
+\item[foo] frobnitz
+\item[bar] foo bar baz
+\item[baz] baz baz baz
+\end{description}
+\end{frame}
+
+\section{Conclusioni}
+\begin{frame}{\insertsection}
+\end{frame}
+
+\section*{Domande?}
+\begin{frame}
+\begin{center}
+{\Huge Domande?}
+\end{center}
+\end{frame}
+
+\end{document}
