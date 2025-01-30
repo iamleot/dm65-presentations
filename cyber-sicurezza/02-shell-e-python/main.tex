@@ -1,0 +1,114 @@
+\documentclass{beamer}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Personal commands
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\newcommand{\command}[1]{\mbox{\texttt{#1}}}
+\newcommand{\file}[1]{\mbox{\texttt{#1}}}
+
+% Beamer options
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{bibliography item}{}
+\setbeamertemplate{caption}{\insertcaption}
+\setbeamertemplate{footline}[frame number]
+
+\title{Shell e Python}
+\author[leot]{Leonardo Taccari \\ {\footnotesize \texttt{<s1069964@studenti.univpm.it>}}}
+\date{}
+
+\begin{document}
+
+% Title of the presentation
+\begin{frame}
+\maketitle
+\end{frame}
+
+% Outline
+\begin{frame}{Sommario}
+\tableofcontents
+\end{frame}
+
+\section{Shell}
+\begin{frame}{\insertsection}
+\end{frame}
+
+\subsection*{Perché?}
+\begin{frame}{\insertsubsection}
+\begin{itemize}
+\item Molto spesso, oltre all'interfaccia grafica, utilizzeremo
+direttamente la linea di comando o \alert{shell}
+\item Molti sistemi - per utilizzare diverse funzionalità - utilizzano la shell
+\item Diversi tipi di \alert{vulnerabilità} possono darci accesso alla shell
+\item La \alert{shell} è anche programmabile (è in tutto e per tutto un
+linguaggio di programmazione!): possiamo scrivere degli
+\alert{shell script}
+\end{itemize}
+\end{frame}
+
+\subsection*{Sintassi dei comandi}
+\begin{frame}[fragile]{\insertsubsection}
+\begin{block}{Sintassi di un comando}
+\begin{verbatim}
+comando argomento_1 argomento_2 ... argomento_n
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\subsection*{\file{stdin}, \file{stdout}, \file{stderr}}
+\begin{frame}{\insertsubsection}
+Ogni programma all'esecuzione ha accesso a tre \alert{file}:
+\begin{description}
+\item[Standard Input (stdin) ($0$)] file usato per l'input, di default la
+tastiera
+\item[Standard Output (stdout) ($1$)] file usato per l'output, di default lo
+schermo
+\item[Standard Error (stderr) ($2$)] file usato per l'output degli errori, di
+default lo schermo
+\end{description}
+In Unix~\footnote{GNU/Linux, insieme ai sistemi BSD e macOS fa parte
+dei sistemi operativi detti Unix-like} solitamente un programma fa un
+singolo compito semplice. Componendo più programmi insieme è possibile
+effettuare dei compiti complessi.
+\end{frame}
+
+\subsection*{Comandi base}
+\begin{frame}[allowframebreaks]{\insertsubsection}
+\begin{description}
+\item[man] mostra le pagine di manuale, esempio: \command{man ls}
+\item[cat] concatena e stampa file, esempio: \command{cat /etc/passwd}
+\item[file] determina il tipo di file, esempio: \command{file flag.png}
+\item[cd] cambia la directory (cartella) corrente, esempio: \command{cd cyberchallenge}
+\item[ls] lista i file/directory, esempio: \command{ls /home}
+\item[mkdir] crea una directory, esempio: \command{mkdir mydir}
+\item[cp] copia file/directory, esempio: \command{cp orig new}
+\item[mv] rinomina/muove file/directory, esempio: \command{mv src dst}
+\item[rm] rimuove file/directory~\footnote{Non esiste nessun cestino! Il file viene
+rimosso direttamente!}, esempio: \command{rm delete-me}
+\item[head] mostra le prime n linee (o byte), esempio: \command{head -5 README.txt}
+\item[tail] mostra le ultime n linee (o byte), esempio: \command{tail -5 README.txt}
+\item[less] paginatore (mostra il contenuto di un file in maniera interattiva), esempio: \command{less README.txt}
+\item[hexdump] mostra il "dump" di un file in esadecimale, esempio: \command{hexdump -C README.txt}
+\end{description}
+\end{frame}
+
+\section{Python}
+\begin{frame}{\insertsection}
+\end{frame}
+
+\section{Conclusioni}
+\begin{frame}{\insertsection}
+\end{frame}
+
+% FIXME: Use bibtex for that!
+\section{Riferimenti}
+\begin{frame}{\insertsection}
+\begin{itemize}
+\item \href{https://training.olicyber.it/training}{Materiale Didattico del Portale di allenamento delle Olimpiadi Italiane di Cybersicurezza} 
+\item \href{https://pwn.college/}{pwn.college}
+\item \href{https://missing.csail.mit.edu/}{The Missing Semester of Your CS Education}
+\end{itemize}
+\end{frame}
+
+\end{document}
