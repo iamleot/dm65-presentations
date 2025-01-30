@@ -8,3 +8,4 @@ Most of the materials here is in Italian, sorry!
 ## Cyber Sicurezza
 
 - [Introduzione alla cyber security, ethical hacking e CTF](https://github.com/iamleot/dm65-presentations/blob/main/cyber-sicurezza/01-introduzione/main.pdf?raw=true)
+- [Shell e Python](https://github.com/iamleot/dm65-presentations/blob/main/cyber-sicurezza/02-shell-e-python/main.pdf?raw=true)
