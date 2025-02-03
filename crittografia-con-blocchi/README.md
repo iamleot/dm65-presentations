@@ -14,3 +14,7 @@ LICEO MATEMATICO". I crittosistemi, la loro analisi ed le possibili
 procedure di attacco sono realizzate in Snap! (un linguaggio di
 programmazione visuale a blocchi) da Michael Lodi (Università di
 Bologna).
+
+Tutto il materiale del corso è basato su:
+
+- [Crittografia a blocchi al liceo](https://bigideascryptok12.bitbucket.io/ita.html)
