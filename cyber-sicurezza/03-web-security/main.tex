@@ -125,6 +125,108 @@ volta fornisce al client la risorsa in una \alert{risposta}
 \end{itemize}
 \end{frame}
 
+\subsection*{Flusso di una richiesta e risposta HTTP}
+\begin{frame}{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item Vediamo il flusso di richiesta e risposta HTTP
+\item Come esempio pratico ci chiediamo che cosa succede quando
+scriviamo nella barra del browser
+\url{https://www.kittenwar.com/c\_images/2006/08/10/84180.1.jpg}
+\end{itemize}
+\end{frame}
+
+\subsubsection*{Digitazione dell'URL nel browser}
+\begin{frame}{\insertsubsection}{\insertsubsubsection}
+\begin{figure}
+\includegraphics[width=0.88\textwidth]{imgs/http-kittenwar-1.png}
+\caption{Digitiamo nel browser web l'URL all'immagine di Joe Dirt}
+\end{figure}
+\end{frame}
+
+\subsubsection*{Richiesta HTTP}
+\begin{frame}{\insertsubsection}{\insertsubsubsection}
+\begin{figure}
+\includegraphics[width=0.88\textwidth]{imgs/http-kittenwar-2.png}
+\caption{Il browser spedisce al server la richiesta HTTP per ottenere la
+risorsa}
+\end{figure}
+\end{frame}
+
+\subsubsection*{Risposta HTTP}
+\begin{frame}{\insertsubsection}{\insertsubsubsection}
+\begin{figure}
+\includegraphics[width=0.88\textwidth]{imgs/http-kittenwar-3.png}
+\caption{Il server web restituisce in risposta la risorsa richiesta}
+\end{figure}
+\end{frame}
+
+\subsubsection*{Rendering dell'immagine nel browser}
+\begin{frame}{\insertsubsection}{\insertsubsubsection}
+\begin{figure}
+\includegraphics[width=0.88\textwidth]{imgs/http-kittenwar-4.png}
+\caption{L'immagine viene visualizzata nel browser web}
+\end{figure}
+\end{frame}
+
+\subsection*{Messaggio HTTP}
+\begin{frame}{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item Le richieste e le risposte HTTP sono dei \alert{messaggi HTTP}
+\item I messaggi HTTP hanno la seguente struttura:
+\begin{description}
+\item[riga iniziale (start line)] indica la versione HTTP e il metodo della
+richiesta (per richieste) o lo status della risposta (per risposte)
+\item[header] metadata che descrivono il messaggio
+\item[riga vuota (empty line)] riga vuota (CRLF, carrige return e line feed)
+che separa l'header dal body
+\item[body] (opzionale) contenuto del messaggio
+\end{description}
+\end{itemize}
+\end{frame}
+
+\subsection*{Richiesta HTTP}
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item Spedita dal \alert{client} al \alert{server}
+\item È costituita da:
+\begin{description}
+\item[request-line] contiene la tripletta \alert{metodo (method)},
+\alert{request-target} e \alert{protocollo (protocol)}
+\begin{description}
+\item[metodo (method)] metodo (detto anche verbo), ad esempio:
+\code{GET} (per ricevere una risorsa) o \code{POST} (per spedire dati)
+\item[request-target] solitamente un URL relativo (senza dominio)
+\item[protocollo (protocol)] versione del protocollo HTTP utilizzata
+\end{description}
+\item[request header] metadati, \code{Host:} è l'unico sempre richiesto, si
+suddividono in \alert{request header} e \alert{representation header}
+\item[body] (opzionale) contenuto della richiesta
+\end{description}
+\end{itemize}
+\end{frame}
+
+\subsection*{Risposta HTTP}
+\begin{frame}[allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item Spedita dal \alert{server} al \alert{client}
+\item È costituita da:
+\begin{description}
+\item[status line] contiene la tripletta \alert{protocollo (protocol)},
+\alert{status code} e \alert{status text}
+\begin{description}
+\item[protocollo (protocol)] versione del protocollo HTTP utilizzata
+\item[status code] codice numerico che indica l'esito della richiesta, ad
+esempio $200$, $403$, $404$, $503$~\footnote{Diversi status code sono
+rappresentati in \url{https://http.cat}}
+\item[status text] descrizione testuale dello status code
+\end{description}
+\item[response header] metadati della risposta, si suddividono \alert{response
+header} e \alert{representation header}
+\item[body] (opzionale) contenuto della risposta
+\end{description}
+\end{itemize}
+\end{frame}
+
 \subsection*{Un po' di pratica!}
 \begin{frame}{\insertsection}{\insertsubsection}
 \begin{itemize}
@@ -133,6 +235,8 @@ volta fornisce al client la risorsa in una \alert{risposta}
 ipermedia ma ci permette di effettuare richieste HTTP e visualizzare la
 risposta HTTP
 \item È molto potente ed utile sia per capire HTTP che per risolvere challenge
+\item Leggiamo velocemente la pagina di manuale \code{curl(1)} con
+\command{man curl}
 \item Vediamo e commentiamo insieme
 \small{\command{curl --http1.1 --verbose http://www.example.org/index.html}}
 \end{itemize}
@@ -154,6 +258,7 @@ dettaglio - ed anche in pratica! - le richieste e risposte HTTP
 \begin{frame}{\insertsection}
 \begin{itemize}
 \item \href{https://training.olicyber.it/training}{Materiale Didattico del Portale di allenamento delle Olimpiadi Italiane di Cybersicurezza} 
+\item \href{https://developer.mozilla.org/en-US/}{MDN Web Docs} 
 \end{itemize}
 \end{frame}
 
