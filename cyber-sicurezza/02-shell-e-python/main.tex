@@ -93,6 +93,72 @@ rimosso direttamente!}, esempio: \command{rm delete-me}
 \end{description}
 \end{frame}
 
+\subsection*{Shell history}
+\begin{frame}{\insertsubsection}
+\begin{itemize}
+\item Nella shell è presente una \alert{history} che ci permette di (ri)vedere e
+rieseguire i comandi digitati in precedenza
+\item Possiamo visualizzare la history via il comando built-in \code{history}
+\item Premendo la freccetta sù e giù possiamo muoverci nella history e
+riscrivere il comando precedente e successivo
+\end{itemize}
+\end{frame}
+
+\subsection*{Shell completion}
+\begin{frame}{\insertsubsection}
+\begin{itemize}
+\item Nella shell è possibile completare comandi/file utilizzando il tasto
+\alert{Tab}
+\item Ad esempio, se vogliamo scrivere \command{less} possiamo scrivere
+\command{les} e poi premere il tasto Tab per completare il comando a
+\command{less}
+\item Se premiamo ulteriormente il tasto Tab vedremo \command{less},
+\command{lessecho}, \command{lesskey}
+\end{itemize}
+\end{frame}
+
+\subsection*{Shell: uso interattivo}
+\begin{frame}{\insertsubsection}
+\begin{itemize}
+\item Nella shell ci sono varie scorciatoie di tastiera utili (la
+sintassi \code{C-a} sta per "tieni premuto il tasto Control e
+premi il tasto a"):
+\begin{description}
+\item[C-a] muove il cursore all'inizio della riga
+\item[C-e] muove il cursore alla fine della riga
+\item[C-w] cancella la parola precedente
+\item[C-u] cancella dal cursore fino all'inizio della riga
+\item[C-d] manda il carattere EOF (end-of-file), come se scrivessimo
+\code{exit} per uscire la shell
+\end{description}
+\item Per saperne di più date un'occhiata a \command{man bash} nella sezione
+\command{READLINE}
+\end{itemize}
+\end{frame}
+
+\subsection*{PAGER: less}
+\begin{frame}{\insertsubsection}
+\begin{itemize}
+\item \command{less} è il \command{PAGER}, una tipologia di comando che ci
+mostra in maniera interattiva un testo
+\item Ci permette di spostarci all'interno del testo con le freccette su e giù
+\item Per vedere l'aiuto interattivo premiamo \command{h} all'interno di
+\command{less}, ad esempio mentre facciamo \command{man curl}
+\item Alcune scorciatoie di tastiera importanti:
+\begin{description}
+\item[h] (help) mostra un aiuto interattivo
+\item[q] (quit) esce dal file/programma
+\item[Spazio] va avanti di una pagina
+\item[b] va indietro di una pagina
+\item[/pattern] cerca un pattern in avanti (possiamo poi muoverci tra
+il testo che compacia tramite \command{n} ed \command{N}
+rispettivamente per andare avanti/indietro)
+\item[g] va all'inizio del testo
+\item[G] va alla fine del testo
+\end{description}
+\end{itemize}
+\end{frame}
+
 \section{Python}
 \begin{frame}{\insertsection}
 \end{frame}
