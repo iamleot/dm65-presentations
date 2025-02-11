@@ -228,7 +228,7 @@ header} e \alert{representation header}
 \end{frame}
 
 \subsection*{Un po' di pratica!}
-\begin{frame}{\insertsection}{\insertsubsection}
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
 \begin{itemize}
 \item \alert{curl} è un client \alert{HTTP}
 \item Non è un vero e proprio browser: non permette di visualizzare gli
@@ -238,7 +238,7 @@ risposta HTTP
 \item Leggiamo velocemente la pagina di manuale \code{curl(1)} con
 \command{man curl}
 \item Vediamo e commentiamo insieme
-\small{\command{curl --http1.1 --verbose http://www.example.org/index.html}}
+\small{\verb+curl --http1.1 --verbose http://www.example.org/index.html+}
 \end{itemize}
 \end{frame}
 
