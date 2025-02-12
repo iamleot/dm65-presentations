@@ -1,0 +1,281 @@
+\documentclass{beamer}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Personal commands
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\newcommand{\command}[1]{\mbox{\texttt{#1}}}
+\newcommand{\file}[1]{\mbox{\texttt{#1}}}
+
+% Beamer options
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{bibliography item}{}
+\setbeamertemplate{caption}{\insertcaption}
+\setbeamertemplate{footline}[frame number]
+
+\title{Web Security: curl e requests}
+\author[leot]{Leonardo Taccari \\ {\footnotesize \texttt{<s1069964@studenti.univpm.it>}}}
+\date{}
+
+\begin{document}
+
+% Title of the presentation
+\begin{frame}
+\maketitle
+\end{frame}
+
+% Outline
+\begin{frame}{Sommario}
+\tableofcontents
+\end{frame}
+
+\section{Un po' di pratica!}
+\subsection*{curl: richiesta HTTP GET}
+\begin{frame}[fragile]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item \alert{curl} è un client \alert{HTTP}
+\item Vediamo una semplice richiesta HTTP GET!
+\item Per le prove seguenti utilizzeremo \href{https://httpbin.org}{httpbin.org}
+che è un server HTTP che supporta molti \alert{metodi HTTP} e ci stampa la
+richiesta che abbiamo fatto formattata in JSON.
+\end{itemize}
+{\tiny
+\begin{verbatim}
+$ curl http://httpbin.org/get
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/8.12.0",
+    "X-Amzn-Trace-Id": "Root=1-67ac5b9f-702782b106ebb1af7a6bfcf5"
+  },
+  "origin": "5.77.65.203",
+  "url": "http://httpbin.org/get"
+}
+\end{verbatim}
+}
+\end{frame}
+
+\subsection*{JSON (JavaScript Object Notation)}
+\begin{frame}{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item \alert{JSON (JavaScript Object Notation)} è un formato utilizzato per lo
+scambio di dati
+\item Deriva dal linguaggio di programmazione JavaScript
+\item È utilizzato in moltissimi servizi Web per scambiare dati
+\item Il suo tipo MIME~\footnote{Che ritroveremo negli header HTTP
+\code{Accept:} per le richieste HTTP
+e \code{Content-Type:} per le risposte HTTP.} è \code{application/json}
+\end{itemize}
+\end{frame}
+
+\subsection*{requests: richiesta HTTP GET}
+\begin{frame}[fragile,allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item \alert{Requests} è una libreria HTTP Python
+\item Vediamo la stessa richiesta utilizzando requests!
+\end{itemize}
+{\tiny
+\begin{verbatim}
+$ python3
+Python 3.12.9 (main, Feb 10 2025, 00:16:27) [GCC 12.4.0] on netbsd10
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import requests
+>>> response = requests.get("http://httpbin.org/get")
+>>> # response conterrà la risposta HTTP ed altre meta-informazioni
+>>> # response.text è il body della risposta HTTP decodificato in str
+>>> print(response.text)  
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Host": "httpbin.org",
+    "User-Agent": "python-requests/2.32.3",
+    "X-Amzn-Trace-Id": "Root=1-67ac5f26-5526d7f1254e39cc6c30b253"
+  },
+  "origin": "5.77.65.203",
+  "url": "http://httpbin.org/get"
+}
+
+\end{verbatim}
+}
+\begin{itemize}
+\item Curiosiamo altri campi della \code{response}!
+\end{itemize}
+{\tiny
+\begin{verbatim}
+>>> response.status_code  # contiene lo status code della risposta HTTP
+200
+>>> response.reason  # contiene lo status text della risposta HTTP
+'OK'
+>>> response.headers  # dict che contiene tutti gli HTTP header della response
+{'Date': 'Wed, 12 Feb 2025 08:48:13 GMT', 'Content-Type': 'application/json', ... }
+\end{verbatim}
+}
+\begin{itemize}
+\item Diamo un'occhiata alla documentazione ufficiale ed al quickstart in
+\url{https://requests.readthedocs.io/}
+\end{itemize}
+\end{frame}
+
+\subsection*{curl: richiesta HTTP GET con parametri}
+\begin{frame}[fragile,allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item Possiamo passare parametri alle richieste HTTP in modo da ottenere una
+particolare versione della risorsa
+\item I parametri vengono passati tramite la \alert{query}
+\item La query è preceduta da un \code{?} e contiene una coppia di
+chiave-valori
+\end{itemize}
+{\tiny
+\begin{verbatim}
+$ curl http://httpbin.org/get?chiave=valore
+{
+  "args": {
+    "chiave": "valore"
+  },
+  "headers": {
+    ...
+  },
+  ...
+  "url": "http://httpbin.org/get?chiave=valore"
+}
+\end{verbatim}
+}
+\begin{itemize}
+\item Se vogliamo passare più chiavi-valori possiamo separiamo le chiavi con il
+carattere \code{\&}, ad esempio
+\small{\verb|curl 'http://httpbin.org/get?chiave1=foo&chiave2=bar|}~\footnote{Abbiamo
+messo l'URL tra apici singoli \code{'} così che caratteri come
+\code{\&} non vengono interpretati dalla shell... nel dubbio
+mettete sempre ciò tra apici singoli!}
+\item In alternativa possiamo utilizzare le opzioni \verb|--get| e \verb|--data|
+di \command{curl}, in modo da non dover preoccuparci di preparare la query
+string noi nell'URL.
+\item Dobbiamo specificare \verb|--get| per specificare che vogliamo una
+richiesta HTTP con il verbo GET perché quando passiamo \verb|--data|
+curl assume che vogliamo usare il verbo POST altrimenti.
+\end{itemize}
+{\tiny
+\begin{verbatim}
+$ curl --get --data-urlencode 'chiave=valore con spazi e == e ?' http://httpbin.org/get
+{
+  "args": {
+    "chiave": "valore con spazi e == e ?"
+  },
+  "headers": {
+    ...
+  },
+  ...,
+  "url": "http://httpbin.org/get?chiave=valore+con+spazi+e+%3d%3d+e+%3f"
+}
+\end{verbatim}
+}
+\begin{itemize}
+\item Come facciamo se vogliamo inserire un \code{=} o \code{?} o altri
+caratteri speciali nella query?
+\item Utilizziamo l'\alert{URL encoding}!
+\item In curl, invece di usare \verb|--data| basta che utilizziamo
+\verb|--data-urlencode|:
+\end{itemize}
+\end{frame}
+
+\subsection*{requests: richiesta HTTP GET con parametri}
+\begin{frame}[fragile,allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item In requests possiamo usare l'argomento opzionale \code{params} per
+passare un dizionario con le chiavi-valori che vogliamo:
+\end{itemize}
+{\tiny
+\begin{verbatim}
+>>> import requests
+>>> response = requests.get("http://httpbin.org/get", params={"chiave": "valore"})
+>>> print(response.text)
+{
+  "args": {
+    "chiave": "valore"
+  },
+  ...
+  "url": "http://httpbin.org/get?chiave=valore+con+%3D%3D+e+%3F"
+}
+\end{verbatim}
+}
+\begin{itemize}
+\item In requests l'URL encoding avviene automaticamente
+\end{itemize}
+\end{frame}
+
+\subsection*{curl: richiesta HTTP con header HTTP personalizzato}
+\begin{frame}[fragile,allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item Possiamo passare degli header HTTP personalizzati per avere una
+rappresentazione diversa della risorsa o autenticarci con delle credenziali
+al server HTTP
+\item Possiamo fare ciò con l'opzione \verb|--header|
+\end{itemize}
+{\tiny
+\begin{verbatim}
+$ curl --header 'X-Custom: value' http://httpbin.org/get
+{
+  "args": {},
+  "headers": {
+    ...,
+    "X-Custom": "value"
+  },
+  ...
+  "url": "http://httpbin.org/get"
+}
+\end{verbatim}
+}
+\end{frame}
+
+\subsection*{requests: richiesta HTTP con header HTTP personalizzato}
+\begin{frame}[fragile,allowframebreaks]{\insertsection}{\insertsubsection}
+\begin{itemize}
+\item In requests, per passare degli header HTTP personalizzati possiamo usare
+l'argomento opzionale \code{headers} che accetta un dizionario con HTTP header e
+corrispondenti valori:
+\end{itemize}
+{\tiny
+\begin{verbatim}
+>>> import requests
+>>> response = requests.get("http://httpbin.org/get", headers={"X-Custom": "value"})
+>>> print(response.text)
+{
+  "args": {},
+  "headers": {
+    ...,
+    "X-Custom": "value"
+  },
+  ...,
+  "url": "http://httpbin.org/get"
+}
+\end{verbatim}
+}
+\end{frame}
+
+\section{Conclusioni}
+\begin{frame}{\insertsection}
+\begin{itemize}
+\item Abbiamo visto come fare richieste HTTP con \code{curl} e \code{requests}
+\item Abbiamo anche dato un'occhiata come avviene lo scambio di informazioni
+utilizzando JSON
+\item Mettendo insieme ciò possiamo ora "scriptare" le nostre richieste HTTP!
+\end{itemize}
+\end{frame}
+
+% FIXME: Use bibtex for that!
+\section{Riferimenti}
+\begin{frame}{\insertsection}
+\begin{itemize}
+\item \href{https://training.olicyber.it/training}{Materiale Didattico del Portale di allenamento delle Olimpiadi Italiane di Cybersicurezza} 
+\item \href{https://developer.mozilla.org/en-US/}{MDN Web Docs} 
+\item \href{https://curl.se}{curl} 
+\item \href{https://requests.readthedocs.io/}{Requests: HTTP for Humans} 
+\end{itemize}
+\end{frame}
+
+\end{document}
