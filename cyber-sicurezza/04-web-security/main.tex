@@ -161,6 +161,28 @@ curl assume che vogliamo usare il verbo POST altrimenti.
 \end{itemize}
 {\tiny
 \begin{verbatim}
+$ curl --get --data 'chiave=' http://httpbin.org/get
+{
+  "args": {
+    "chiave": "valore"
+  },
+  "headers": {
+    ...
+  },
+  ...,
+  "url": "http://httpbin.org/get?chiave=valore"
+}
+\end{verbatim}
+}
+\begin{itemize}
+\item Come facciamo se vogliamo inserire un \code{=} o \code{?} o altri
+caratteri speciali nella query?
+\item Utilizziamo l'\alert{URL encoding}!
+\item In curl, invece di usare \verb|--data| basta che utilizziamo
+\verb|--data-urlencode|:
+\end{itemize}
+{\tiny
+\begin{verbatim}
 $ curl --get --data-urlencode 'chiave=valore con spazi e == e ?' http://httpbin.org/get
 {
   "args": {
@@ -174,13 +196,6 @@ $ curl --get --data-urlencode 'chiave=valore con spazi e == e ?' http://httpbin.
 }
 \end{verbatim}
 }
-\begin{itemize}
-\item Come facciamo se vogliamo inserire un \code{=} o \code{?} o altri
-caratteri speciali nella query?
-\item Utilizziamo l'\alert{URL encoding}!
-\item In curl, invece di usare \verb|--data| basta che utilizziamo
-\verb|--data-urlencode|:
-\end{itemize}
 \end{frame}
 
 \subsection*{requests: richiesta HTTP GET con parametri}
@@ -199,7 +214,7 @@ passare un dizionario con le chiavi-valori che vogliamo:
     "chiave": "valore"
   },
   ...
-  "url": "http://httpbin.org/get?chiave=valore+con+%3D%3D+e+%3F"
+  "url": "http://httpbin.org/get?chiave=valore"
 }
 \end{verbatim}
 }
