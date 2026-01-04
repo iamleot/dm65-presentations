@@ -1,4 +1,5 @@
 name: Check GitHub Actions workflows
+permissions: {}
 
 'on':
   push:

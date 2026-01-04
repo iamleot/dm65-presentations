@@ -1,4 +1,5 @@
 name: Regenerate PDF files
+permissions: {}
 
 'on':
   push:
