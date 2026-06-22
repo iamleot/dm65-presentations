@@ -10,7 +10,7 @@ permissions: {}
     - cron: '12 3 * * 4'
 
 env:
-  TASK_VERSION: "3.41.0"
+  TASK_VERSION: "3.51.1"
 
 jobs:
   ci:
